@@ -1,0 +1,14 @@
+{
+  "name": "webtheory/acnologia",
+  "description": "WordPress application development framework",
+  "homepage": "https://github.com/spider-mane/acnologia",
+  "license": "MIT",
+  "type": "project",
+
+  "authors": [{
+    "name": "Chris Williams",
+    "email": "spider.mane.web@gmail.com",
+    "homepage": "https://github.com/spider-mane",
+    "role": "Developer"
+  }]
+}
