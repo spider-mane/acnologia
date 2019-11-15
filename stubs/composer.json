@@ -30,7 +30,6 @@
     "slim/slim": "4.3.0",
     "swiftmailer/swiftmailer": "^6.2",
     "symfony/property-access": "^4.2",
-    "vlucas/phpdotenv": "^3.3",
     "webtheory/guctilitybelt": "^0.1.0",
     "webtheory/html": "^0.1.0",
     "webtheory/leonidas": "^0.8.0",

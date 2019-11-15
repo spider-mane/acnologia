@@ -1,0 +1,53 @@
+# Application
+public_html/app/plugins/*
+!public_html/app/plugins/.gitkeep
+public_html/app/mu-plugins/*/
+public_html/app/upgrade
+# public_html/app/uploads/*
+!public_html/app/uploads/.gitkeep
+
+# WordPress
+public_html/wp
+public_html/.htaccess
+
+# Logs
+*.log
+npm-debug-log
+
+# phpunit
+phpcs.xml
+phpunit.xml
+.phpunit.result.cache
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Composer
+vendor/
+composer.phar
+
+# NPM
+node_modules/
+.npm
+
+# WP-CLI
+wp-cli.local.yml
+
+# Editor/ IDE
+.idea/
+.project/
+.vscode/
+*.code-workspace
+nbproject/
+
+# Mac Os
+.DS_Store
+
+# Windows
+*.lnk
+
+# Misc
+build
+coverage

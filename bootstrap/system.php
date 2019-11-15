@@ -9,45 +9,14 @@
  * can.
  */
 
-use Dotenv\Dotenv;
 use WebTheory\Zeref\Accessors\Config;
 use WebTheory\Zeref\System;
-
-/**
- * Generalities
- */
-define('DS', DIRECTORY_SEPARATOR);
-define('WEB_ROOT', 'public');
-
-/** @var string Directory containing all of the site's files */
-$rootDir = dirname(__DIR__);
-define('APP_ROOT', $rootDir);
-
-/** @var string Document Root */
-$webRootDir = $rootDir . WEB_ROOT;
-
-/**
- * Expose global env() function from oscarotero/env
- */
-Env::init();
-
-/**
- * Use Dotenv to set required environment variables and load .env file in root
- */
-$dotenv = Dotenv::create($rootDir);
-if (file_exists($rootDir . '/.env')) {
-    $dotenv->load();
-    $dotenv->required(['WP_HOME', 'WP_SITEURL']);
-    if (!env('DATABASE_URL')) {
-        $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
-    }
-}
 
 /**
  * Set up our global environment constant and load its config first
  * Default: production
  */
-define('WP_ENV', env('WP_ENV', 'production'));
+System::define('WP_ENV', env('WP_ENV', 'production'));
 
 /**
  * URLs
@@ -58,17 +27,10 @@ System::define('WP_SITEURL', env('WP_SITEURL'));
 /**
  * Custom Content Directory
  */
-System::define('CONTENT_DIR', '/app');
-System::define('WP_CONTENT_DIR', $webRootDir . System::get('CONTENT_DIR'));
-System::define('WP_CONTENT_URL', System::get('WP_HOME') . System::get('CONTENT_DIR'));
+System::define('WP_CONTENT_URL', System::get('WP_HOME') . WP_CONTENT_DIRNAME);
 
 /**
- * Bootsrap application
- */
-require_once 'app.php';
-
-/**
- * DB settings
+ * Database settings
  */
 System::define('DB_NAME', env('DB_NAME'));
 System::define('DB_USER', env('DB_USER'));
@@ -130,10 +92,10 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
     $_SERVER['HTTPS'] = 'on';
 }
 
-$envConfig = __DIR__ . '/environments/' . WP_ENV . '.php';
+$envConfig = realpath(__DIR__ . '/environments/' . WP_ENV . '.php');
 
 if (file_exists($envConfig)) {
-    require_once $envConfig;
+    require $envConfig;
 }
 
 /**
@@ -145,5 +107,5 @@ System::apply();
  * Bootstrap WordPress
  */
 if (!defined('ABSPATH')) {
-    define('ABSPATH', $webRootDir . '/wp/');
+    define('ABSPATH', WP_CORE_DIR . DS);
 }

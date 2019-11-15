@@ -5,13 +5,17 @@ use WebTheory\Zeref\Application;
 /**
  * create app
  */
-$app = new Application(dirname(__DIR__));
+$app = new Application(APP_ROOT_DIR);
+
+/**
+ * configure app
+ */
 
 /**
  * add definitions
  */
 
 /**
- * return app
+ * bootstrap app
  */
-return $app;
+$app->bootstrap();

@@ -1,5 +1,11 @@
 <?php
 
-/** WordPress view bootstrapper */
-define('WP_USE_THEMES', true);
-require __DIR__ . '/wp/wp-blog-header.php';
+/**
+ * Loads file to define the most urgent constants
+ */
+require dirname(__DIR__) . '/bootstrap/definitions.php';
+
+/**
+ * Loads the WordPress Environment and Template
+ */
+require __DIR__ . '/' . WP_CORE_DIRNAME . '/wp-blog-header.php';

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vendor\Package;
+namespace App;
 
 use PHPUnit\Framework\TestCase;
 

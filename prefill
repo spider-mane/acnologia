@@ -65,7 +65,7 @@ $replacements = [
 $files = array_merge(
   glob(__DIR__ . '/*.md'),
   glob(__DIR__ . '/*.xml.dist'),
-  glob(__DIR__ . '/composer.json.dist'),
+  glob(__DIR__ . '/*.json.dist'),
   glob(__DIR__ . '/src/*.php'),
   glob(__DIR__ . '/tests/*.php')
 );
@@ -140,7 +140,7 @@ do {
 } while (($modify = strtolower(read_from_console('Modify files with these values? [y/N/q] '))) != 'y');
 echo "\n";
 
-echo shell_exec('rm -rf .git') . "\n";
+echo unlink('.git') . "\n";
 echo shell_exec('git init') . "\n";
 
 echo "Updating file content\n";
@@ -160,5 +160,4 @@ echo rename('composer.json.dist', 'composer.json');
 
 echo "All done! Going away now.\n";
 
-unlink(basename(__FILE__) . '.sh');
 unlink(basename(__FILE__));
