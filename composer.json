@@ -3,6 +3,7 @@
   "description": "Lightweight WordPress application development framework",
   "homepage": "https://github.com/spider-mane/acnologia",
   "license": "MIT",
+  "type": "project",
 
   "keywords": [
     "webtheory",
@@ -84,7 +85,9 @@
   },
 
   "config": {
+    "preferred-install": "dist",
     "sort-packages": true,
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "process-timeout": 0
   }
 }
