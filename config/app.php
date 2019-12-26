@@ -16,9 +16,9 @@ return [
     'name' => env('APP_NAME', 'Acnologia'),
 
     'providers' => [
-        App\Providers\FieldServiceProvider::class,
-        App\Providers\PostTypeServiceProvider::class,
-        App\Providers\TaxonomyServiceProvider::class,
-        App\Providers\SwiftMailerProvider::class,
+        WebTheory\Zeref\Providers\FieldServiceProvider::class,
+        WebTheory\Zeref\Providers\PostTypeServiceProvider::class,
+        WebTheory\Zeref\Providers\TaxonomyServiceProvider::class,
+        WebTheory\Zeref\Providers\SwiftMailerProvider::class,
     ],
 ];

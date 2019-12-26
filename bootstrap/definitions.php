@@ -6,9 +6,6 @@
  * directory name (ie change WEB_ROOT_DIRNAME to 'public_html')
  */
 
-# Use themes
-define('WP_USE_THEMES', true);
-
 # Base
 define('DS', DIRECTORY_SEPARATOR);
 define('APP_ROOT_DIR', dirname(__DIR__));

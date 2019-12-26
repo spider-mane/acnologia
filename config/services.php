@@ -23,17 +23,21 @@ return [
         'secret' => env('RECAPTCHA_SECRET'),
     ],
 
-    'google' => [
-
-        'maps' => [
-            'key' => env('GOOGLE_MAPS_KEY')
-        ]
-    ],
-
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+    ],
+
+    'google' => [
+
+        'maps' => [
+            'key' => env('GOOGLE_MAPS_KEY')
+        ],
+
+        'places' => [
+            'key' => env('GOOGLE_PLACES_KEY')
+        ]
     ],
 
     'aws' => [

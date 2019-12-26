@@ -1,11 +1,18 @@
 <?php
 
 /**
- * Loads file to define the most urgent constants
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package Acnologia
  */
-require dirname(__DIR__) . '/bootstrap/definitions.php';
 
 /**
- * Loads the WordPress Environment and Template
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
  */
-require __DIR__ . '/' . WP_CORE_DIRNAME . '/wp-blog-header.php';
+define('WP_USE_THEMES', true);
+
+/** Loads the WordPress Environment and Template */
+require dirname(__FILE__) . 'wp/wp-blog-header.php';

@@ -102,10 +102,3 @@ if (file_exists($envConfig)) {
  * Formally define as constants all values passed to System::define()
  */
 System::apply();
-
-/**
- * Bootstrap WordPress
- */
-if (!defined('ABSPATH')) {
-    define('ABSPATH', WP_CORE_DIR . DS);
-}

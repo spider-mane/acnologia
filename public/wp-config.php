@@ -7,9 +7,14 @@
  * wp-config.php.
  */
 
-require APP_ROOT_DIR . '/vendor/autoload.php';
-require APP_ROOT_DIR . '/bootstrap/dotenv.php';
-require APP_ROOT_DIR . '/bootstrap/app.php';
-require APP_ROOT_DIR . '/bootstrap/system.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
+require dirname(__DIR__) . 'bootstrap/definitions.php';
+require dirname(__DIR__) . '/bootstrap/app.php';
+require dirname(__DIR__) . '/bootstrap/system.php';
+
+
+if (!defined('ABSPATH')) {
+    define('ABSPATH', WP_CORE_DIR . DS);
+}
 
 require ABSPATH . 'wp-settings.php';

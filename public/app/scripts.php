@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name:  Application Loader
+Plugin Name:  Application Script Loader
 Plugin URI:   https://github.com/spider-mane/acnologia
 Description:  Loads primary application files.
 Version:      1.0.0
@@ -16,19 +16,22 @@ use WebTheory\Zeref\Accessors\App;
  * loads logic from project app directory on wp init
  */
 add_action('init', function () {
-    require_once App::path('scripts/init.php');
+    require App::path('scripts/init.php');
 });
 
 /**
  * loads logic from project app directory on admin init
  */
 add_action('admin_init', function () {
-    require_once App::path('scripts/admin.php');
+    require App::path('scripts/admin.php');
 });
 
 /**
- * Loads a script before as soon as this file is loaded by wp
+ * Loads a setup file for running vital hooks
  */
-if (file_exists($root = App::path('scripts/root.php'))) {
-    require_once $root;
-}
+require App::path('scripts/setup.php');
+
+/**
+ * Loads a setup file for running vital hooks
+ */
+require App::path('scripts/routes.php');
