@@ -71,7 +71,7 @@
     "fix-style": "vendor/bin/phpcbf src tests",
     "benchmark": "vendor/bin/phpbench",
     "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.sample', '.env');\""
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ]
   },
 
