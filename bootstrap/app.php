@@ -5,7 +5,7 @@ use WebTheory\Zeref\Application;
 /**
  * create app
  */
-$app = new Application(APP_ROOT_DIR);
+$app = new Application(dirname(__DIR__), 'public');
 
 /**
  * configure app

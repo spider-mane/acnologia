@@ -9,29 +9,33 @@
  * can.
  */
 
+use WebTheory\Zeref\Accessors\App;
 use WebTheory\Zeref\Accessors\Config;
 use WebTheory\Zeref\System;
 
+$core = 'wp';
+$content = 'app';
+
+
 /**
  * Set up our global environment constant and load its config first
- * Default: production
  */
 System::define('WP_ENV', env('WP_ENV', 'production'));
 
-/**
- * URLs
- */
-System::define('WP_HOME', env('WP_HOME'));
+# URLs
 System::define('WP_SITEURL', env('WP_SITEURL'));
+System::define('WP_HOME', env('WP_HOME'));
 
-/**
- * Custom Content Directory
- */
-System::define('WP_CONTENT_URL', System::get('WP_HOME') . WP_CONTENT_DIRNAME);
 
-/**
- * Database settings
- */
+# WP Core
+System::define('WP_CORE_DIR', App::webPath($core));
+
+# WP Content
+System::define('WP_CONTENT_DIR', App::webPath($content));
+System::define('WP_CONTENT_URL', System::get('WP_HOME') . '/' . $content);
+
+
+# Database settings
 System::define('DB_NAME', env('DB_NAME'));
 System::define('DB_USER', env('DB_USER'));
 System::define('DB_PASSWORD', env('DB_PASSWORD'));
@@ -82,7 +86,7 @@ System::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON', false));
 System::define('DISALLOW_FILE_EDIT', true);
 
 // Disable plugin and theme updates and installation from the admin
-System::define('DISALLOW_FILE_MODS', true);
+System::define('DISALLOW_FILE_MO$ds', true);
 
 /**
  * Allow WordPress to detect HTTPS when used behind a reverse proxy or a load balancer

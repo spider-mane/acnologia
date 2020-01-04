@@ -31,8 +31,8 @@ $form = (new PostMetaBoxFormSubmissionManager($postType))
 
 // create form field controller
 $subtitle = AdminField::create([
-    'post_var' => $postType . '__subtitle',
-    'escape' => null,
+    'request_var' => $postType . '__subtitle',
+    'escaper' => null,
     'type' => [
         '@create' => 'textarea',
         'rows' => 2,

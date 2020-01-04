@@ -15,6 +15,6 @@
 /phpbench.json.dist               export-ignore
 /phpcs.xml.dist                   export-ignore
 /phpunit.xml.dist                 export-ignore
-/tests/framework                  export-ignore
+
 /prefill                          export-ignore
 /__templates                      export-ignore

@@ -21,7 +21,7 @@ return [
         'show_in_admin_bar' => true,
         'show_in_menu' => true,
         'show_in_nav_menus' => true,
-        'show_in_rest' => true,
+        'show_in_rest' => false,
         'show_ui' => true,
         'supports' => ['title', 'thumbnail', 'editor'],
 
@@ -72,7 +72,7 @@ return [
         'show_in_admin_bar' => true,
         'show_in_menu' => true,
         'show_in_nav_menus' => true,
-        'show_in_rest' => true,
+        'show_in_rest' => false,
         'show_ui' => true,
         'supports' => ['title', 'thumbnail'],
 

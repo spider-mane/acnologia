@@ -17,7 +17,7 @@ class ContactForm extends FormBase implements FormInterface
     /**
      *
      */
-    protected function config()
+    protected function config(): array
     {
         $prefix = Config::get("app.key_prefix");
 

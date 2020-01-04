@@ -61,8 +61,7 @@ $titleSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-company-
 
 $titleElement = (new Text)
     ->setId("{$prefix}--company-info--title-full")
-    ->addClass("regular-text")
-    ->setPlaceholder("I don't know, say... WebTheory Studio?");
+    ->addClass("regular-text");
 
 $titleField = (new SettingsField("{$prefix}-company-title", "Full Title", $page->getMenuSlug()))
     ->setSection($companNameSection->getId())
@@ -79,8 +78,7 @@ $shortTitleSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-com
 
 $shortTitleElement = (new Text)
     ->setId("{$prefix}--company-info--title-short")
-    ->addClass("regular-text")
-    ->setPlaceholder("I don't know, say... WebTheory?");
+    ->addClass("regular-text");
 
 $shortTitleField = (new SettingsField("{$prefix}-company-title-short", "Short Name", $page->getMenuSlug()))
     ->setSection($companNameSection->getId())
@@ -97,8 +95,7 @@ $shortTitleSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-com
 
 $shortTitleElement = (new Text)
     ->setId("{$prefix}--company-info--title-styled")
-    ->addClass("regular-text")
-    ->setPlaceholder("I don't know, say... WebTheory::studio()?");
+    ->addClass("regular-text");
 
 $shortTitleField = (new SettingsField("{$prefix}-company-title-styled", "Stylized Name", $page->getMenuSlug()))
     ->setSection($companNameSection->getId())

@@ -37,7 +37,7 @@
     "webtheory/leonidas": "^0.8.3",
     "webtheory/saveyour": "^0.1",
     "webtheory/wp-library": "^0.7.1",
-    "webtheory/zeref": "^0.1.2"
+    "webtheory/zeref": "^0.1.3"
   },
 
   "require-dev": {

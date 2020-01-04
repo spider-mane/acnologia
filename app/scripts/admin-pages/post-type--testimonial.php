@@ -31,7 +31,7 @@ $form = (new PostMetaBoxFormSubmissionManager($postType))
 
 // create form field controller
 $testimonial = AdminField::create([
-    "post_var" => $postType . "__testimonial",
+    "request_var" => $postType . "__testimonial",
     "type" => [
         "@create" => "textarea",
         "rows" => 15,

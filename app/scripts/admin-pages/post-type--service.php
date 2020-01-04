@@ -36,7 +36,7 @@ $form = (new PostMetaBoxFormSubmissionManager($postType))
 
 // create form field controller
 $subtitle = AdminField::create([
-    "post_var" => $postType . "__subtitle",
+    "request_var" => $postType . "__subtitle",
     "type" => [
         "@create" => "text",
         "classlist" => ["large-text"],
@@ -66,7 +66,7 @@ $form->addField($subtitle);
 
 // create form field controller
 $description = AdminField::create([
-    "post_var" => $postType . "__description",
+    "request_var" => $postType . "__description",
     "type" => [
         "@create" => "textarea",
         "rows" => 15,
@@ -97,7 +97,7 @@ $form->addField($description);
 
 // create form field controller
 $pitch = AdminField::create([
-    "post_var" => $postType . "__pitch",
+    "request_var" => $postType . "__pitch",
     "type" => [
         "@create" => "textarea",
         "rows" => 5,
