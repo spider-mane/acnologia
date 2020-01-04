@@ -92,7 +92,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
     $_SERVER['HTTPS'] = 'on';
 }
 
-$envConfig = realpath(__DIR__ . '/environments/' . WP_ENV . '.php');
+$envConfig = realpath(__DIR__ . '/environments/' . System::get('WP_ENV') . '.php');
 
 if (file_exists($envConfig)) {
     require $envConfig;

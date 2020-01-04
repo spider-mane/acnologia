@@ -15,10 +15,14 @@ return [
 
     'name' => env('APP_NAME', 'Acnologia'),
 
+    'key_prefix' => env('KEY_PREFIX', ''),
+
     'providers' => [
-        WebTheory\Zeref\Providers\FieldServiceProvider::class,
+        WebTheory\Zeref\Providers\FormRepositoryServiceProvider::class,
+        WebTheory\Zeref\Providers\GuzzleResponseFactoryServiceProvider::class,
         WebTheory\Zeref\Providers\PostTypeServiceProvider::class,
+        WebTheory\Zeref\Providers\SwiftMailerServiceProvider::class,
         WebTheory\Zeref\Providers\TaxonomyServiceProvider::class,
-        WebTheory\Zeref\Providers\SwiftMailerProvider::class,
+        WebTheory\Zeref\Providers\WpAdminFieldFactoryServiceProvider::class,
     ],
 ];

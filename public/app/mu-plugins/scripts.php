@@ -27,11 +27,6 @@ add_action('admin_init', function () {
 });
 
 /**
- * Loads a setup file for running vital hooks
+ * Loads a setup file
  */
 require App::path('scripts/setup.php');
-
-/**
- * Loads a setup file for running vital hooks
- */
-require App::path('scripts/routes.php');

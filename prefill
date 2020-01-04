@@ -3,6 +3,7 @@
 ################################################################################
 # config
 ################################################################################
+$filename = basename(__FILE__);
 
 $name = trim(shell_exec('git config user.name'));
 $email = trim(shell_exec('git config user.email'));
@@ -62,47 +63,41 @@ $replacements = [
   },
 ];
 
-$files = array_merge(
-  glob(__DIR__ . '/*.md'),
-  glob(__DIR__ . '/*.xml.dist'),
-  glob(__DIR__ . '/*.json.dist'),
-  glob(__DIR__ . '/src/*.php'),
-  glob(__DIR__ . '/tests/*.php')
-);
+
+################################################################################
+# Copy Template Files
+################################################################################
+
+$keep = [$filename, '.editorconfig', '.env.example', 'composer.json'];
+$delete = glob(__DIR__) . '/*';
+$move = glob(__DIR__ . '/__templates/*');
+
+foreach ($delete as $file) {
+  if (is_file($file) && !in_array(basename($file), $keep)) {
+    unlink($file);
+  }
+}
+
+foreach ($move as $file) {
+  rename($file, __DIR__ . '/' . basename($file));
+}
+
+unlink('__templates');
+
 
 ################################################################################
 # Process
 ################################################################################
 
+$files = array_merge(
+  glob(__DIR__ . '/*.md'),
+  glob(__DIR__ . '/*.xml.dist'),
+  glob(__DIR__ . '/*.json.dist')
+);
+
 define('COL_DESCRIPTION', 0);
 define('COL_HELP', 1);
 define('COL_DEFAULT', 2);
-
-function read_from_console($prompt)
-{
-  if (function_exists('readline')) {
-    $line = trim(readline($prompt));
-    if (!empty($line)) {
-      readline_add_history($line);
-    }
-  } else {
-    echo $prompt;
-    $line = trim(fgets(STDIN));
-  }
-  return $line;
-}
-
-function interpolate($text, $values)
-{
-  if (!preg_match_all('/\{(\w+)\}/', $text, $m)) {
-    return $text;
-  }
-  foreach ($m[0] as $k => $str) {
-    $f = $m[1][$k];
-    $text = str_replace($str, $values[$f], $text);
-  }
-  return $text;
-}
 
 $modify = 'n';
 do {
@@ -140,7 +135,6 @@ do {
 } while (($modify = strtolower(read_from_console('Modify files with these values? [y/N/q] '))) != 'y');
 echo "\n";
 
-echo unlink('.git') . "\n";
 echo shell_exec('git init') . "\n";
 
 echo "Updating file content\n";
@@ -155,9 +149,36 @@ foreach ($files as $f) {
 
 echo shell_exec('sed -i -e "/^\*\*Note:\*\* Replace/d" README.md') . "\n";
 
-echo unlink('composer.json');
-echo rename('composer.json.dist', 'composer.json');
-
 echo "All done! Going away now.\n";
 
 unlink(basename(__FILE__));
+
+
+################################################################################
+# Functions
+################################################################################
+function read_from_console($prompt)
+{
+  if (function_exists('readline')) {
+    $line = trim(readline($prompt));
+    if (!empty($line)) {
+      readline_add_history($line);
+    }
+  } else {
+    echo $prompt;
+    $line = trim(fgets(STDIN));
+  }
+  return $line;
+}
+
+function interpolate($text, $values)
+{
+  if (!preg_match_all('/\{(\w+)\}/', $text, $m)) {
+    return $text;
+  }
+  foreach ($m[0] as $k => $str) {
+    $f = $m[1][$k];
+    $text = str_replace($str, $values[$f], $text);
+  }
+  return $text;
+}

@@ -18,7 +18,7 @@ return [
         'dsn' => env('SENTRY_DSN'),
     ],
 
-    'reCaptcha' => [
+    'recaptcha' => [
         'key' => env('RECAPTCHA_KEY'),
         'secret' => env('RECAPTCHA_SECRET'),
     ],

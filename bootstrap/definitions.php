@@ -18,3 +18,8 @@ define('WP_CORE_DIR', APP_ROOT_DIR . DS . WEB_ROOT_DIRNAME . DS . WP_CORE_DIRNAM
 # WP Content
 define('WP_CONTENT_DIRNAME', 'app');
 define('WP_CONTENT_DIR', APP_ROOT_DIR . DS . WEB_ROOT_DIRNAME . DS . WP_CONTENT_DIRNAME);
+
+# WP Absolute Path
+if (!defined('ABSPATH')) {
+    define('ABSPATH', WP_CORE_DIR . DS);
+}

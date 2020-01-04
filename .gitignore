@@ -1,14 +1,17 @@
 # Application
-public/app/plugins/*
-!public/app/plugins/.gitkeep
-public/app/mu-plugins/*
-public/app/upgrade
-# public/app/uploads/*
-!public/app/uploads/.gitkeep
+!public/app/mu-plugins/__.php
+!public/app/mu-plugins/scripts.php
 
 # WordPress
 public/wp
 public/.htaccess
+
+# wp-content
+public/app/plugins/*
+!public/app/plugins/.gitkeep
+public/app/mu-plugins/*
+public/app/upgrade
+!public/app/uploads/.gitkeep
 
 # Logs
 *.log

@@ -18,14 +18,13 @@
   }],
 
   "require": {
-    "php": "^7.2",
+    "php": ">=7.2",
     "commerceguys/addressing": "^1.0",
     "dragonmantank/cron-expression": "^2.2",
     "frontpack/composer-assets-plugin": "^0.9.4",
     "geocoder-php/google-maps-provider": "^4.4",
     "guzzlehttp/guzzle": "^6.3",
     "league/flysystem": "^1.0",
-    "league/fractal": "^0.17.0",
     "php-http/guzzle6-adapter": "^2.0",
     "predis/predis": "^1.1",
     "ramsey/uuid": "^3.8",
@@ -33,16 +32,18 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "sentry/sdk": "^2.0",
     "swiftmailer/swiftmailer": "^6.2",
-    "webtheory/guctilitybelt": "^0.2.0",
-    "webtheory/html": "^0.1.0",
-    "webtheory/leonidas": "^0.8.1",
-    "webtheory/saveyour": "^0.1.1"
+    "webtheory/guctilitybelt": "^0.2",
+    "webtheory/html": "^0.1",
+    "webtheory/leonidas": "^0.8.3",
+    "webtheory/saveyour": "^0.1",
+    "webtheory/wp-library": "^0.7.1",
+    "webtheory/zeref": "^0.1.2"
   },
 
   "require-dev": {
     "filp/whoops": "^2.5",
     "friendsofphp/php-cs-fixer": "^2.15",
-    "laravel/homestead": "^7.0",
+    "laravel/homestead": "^9.0",
     "phpbench/phpbench": "@dev",
     "phpunit/phpunit": "^8.2",
     "psy/psysh": "^0.9.9",
