@@ -1,6 +1,7 @@
 <?php
 
 use Respect\Validation\Validator as v;
+use WebTheory\GuctilityBelt\Phone;
 use WebTheory\Leonidas\AdminPage\SettingsField;
 use WebTheory\Leonidas\AdminPage\SettingsPage;
 use WebTheory\Leonidas\AdminPage\SettingsSection;
@@ -14,14 +15,13 @@ use WebTheory\Zeref\Accessors\Config;
 ################################################################################
 # Script Variables
 ################################################################################
-$prefix = Config::get("app.key_prefix");
+$prefix = Config::get("app.prefix");
 
 # global alert messages
 $invalidUrl = Config::get("wp.admin.alerts.invalid_email");
 
 # option groups
 $companyInfoOptionGroup = "{$prefix}-company-info";
-
 
 
 ################################################################################
@@ -36,8 +36,7 @@ $page = (new SettingsPage("{$prefix}-company-info", "manage_options"))
     ->setMenuTitle("Company Info")
     ->setPageTitle("Company Info")
     ->setPosition(100)
-    ->hook();
-
+    ->register();
 
 
 ################################################################################
@@ -46,7 +45,7 @@ $page = (new SettingsPage("{$prefix}-company-info", "manage_options"))
 
 ## register section
 $companNameSection = (new SettingsSection("{$prefix}-company-name", "Company Name", $page->getMenuSlug()))
-    ->setDescription("Who is you?")
+    ->setDescription("Your company name")
     ->hook();
 
 $titleVars = [
@@ -54,7 +53,7 @@ $titleVars = [
 ];
 
 # full title
-$titleSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-company-full-name"))
+$titleSetting = (new SettingManager($companyInfoOptionGroup, "{$companyInfoOptionGroup}--name--full"))
     ->setDescription("Full title, including any legal designations")
     ->addFilter($titleVars["filter"])
     ->hook();
@@ -71,7 +70,7 @@ $titleField = (new SettingsField("{$prefix}-company-title", "Full Title", $page-
 
 
 # short name
-$shortTitleSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-company-short-name"))
+$shortTitleSetting = (new SettingManager($companyInfoOptionGroup, "{$companyInfoOptionGroup}--name--short"))
     ->setDescription("Short version of the full company name")
     ->addFilter($titleVars["filter"])
     ->hook();
@@ -88,7 +87,7 @@ $shortTitleField = (new SettingsField("{$prefix}-company-title-short", "Short Na
 
 
 # styled name
-$shortTitleSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-company-styled-name"))
+$shortTitleSetting = (new SettingManager($companyInfoOptionGroup, "{$companyInfoOptionGroup}--name--styled"))
     ->setDescription("Stylized version of the company name")
     ->addFilter($titleVars["filter"])
     ->hook();
@@ -104,7 +103,6 @@ $shortTitleField = (new SettingsField("{$prefix}-company-title-styled", "Stylize
     ->hook();
 
 
-
 ################################################################################
 # Contact info
 ################################################################################
@@ -113,14 +111,20 @@ $contactVars = [
     "filter" => "sanitize_text_field"
 ];
 
+$telFilter = function ($phone) {
+    return !empty($phone) ? Phone::formatUS($phone) : '';
+};
+$emailFilter = 'sanitize_email';
+
+
 ## register section
 $companyContactSection = (new SettingsSection("{$prefix}-company-contact", "Contact Info", $page->getMenuSlug()))
     ->setDescription("General contact information for your company")
     ->hook();
 
 # phone number
-$phoneSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-company-contact--phone"))
-    ->addFilter($contactVars["filter"])
+$phoneSetting = (new SettingManager($companyInfoOptionGroup, "{$companyInfoOptionGroup}--contact--phone"))
+    ->addFilter($telFilter)
     ->addRule("valid-phone", v::optional(v::phone()), "Please enter a valid phone number")
     ->hook();
 
@@ -137,8 +141,8 @@ $phoneField = (new SettingsField("{$prefix}-company-contact-phone", "Contact Num
 
 
 # email address
-$emailSetting = (new SettingManager($companyInfoOptionGroup, "{$prefix}-company-contact--email"))
-    ->addFilter($titleVars["filter"])
+$emailSetting = (new SettingManager($companyInfoOptionGroup, "{$companyInfoOptionGroup}--contact--email"))
+    ->addFilter($emailFilter)
     ->addRule("valid-email", v::optional(v::email()), "Please enter a valid email address")
     ->hook();
 
@@ -154,20 +158,18 @@ $emailField = (new SettingsField("{$prefix}-company-contact-email", "Contact Ema
     ->hook();
 
 
-
 ################################################################################
 # Address
 ################################################################################
+
+$addressVars = [
+    "filter" => "sanitize_text_field"
+];
 
 ## register section
 $companyContactSection = (new SettingsSection("{$prefix}-company-address", "Address", $page->getMenuSlug()))
     ->setDescription("Your company\"s primary address")
     ->hook();
-
-$titleVars = [
-    "filter" => "sanitize_text_field"
-];
-
 
 
 ################################################################################
@@ -180,18 +182,30 @@ $socialMediaSection = (new SettingsSection("{$prefix}-social-media", "Social Med
     ->hook();
 
 # repeated fields
-$socialMedia = Config::get("wp.admin.social_media");
-foreach ($socialMedia as $slug => $name) {
+$socialMediaAccounts = [
+    'facebook' => 'Facebook',
+    'instagram' => 'Instagram',
+    'twitter' => 'Twitter',
+    'linkedin' => 'linkedIn',
+];
 
-    $setting = (new SettingManager($companyInfoOptionGroup, "{$companyInfoOptionGroup}--{$slug}"))
+$placeholder = 'your-account';
+$placeholders = [
+    'linkedin' => "https://linkedin.com/company/{$placeholder}"
+];
+
+foreach ($socialMediaAccounts as $slug => $name) {
+    $setting = (new SettingManager($companyInfoOptionGroup, "{$companyInfoOptionGroup}--social-media--{$slug}"))
         ->addRule("valid-url", v::optional(v::url()), $invalidUrl)
         ->addFilter("esc_url_raw")
         ->hook();
 
+    $dummyUrl = $placeholders[$slug] ?? "https://{$slug}.com/{$placeholder}";
+
     $element = (new Url)
-        ->addClass("regular-text")
+        ->addClass("large-text")
         ->setId("{$prefix}--social-media--{$slug}")
-        ->setPlaceholder("e.g. https://{$slug}.com/your-account");
+        ->setPlaceholder("e.g. {$dummyUrl}");
 
     $field = (new SettingsField("social-media-{$slug}", $name, $page->getMenuSlug()))
         ->setSection($socialMediaSection->getId())

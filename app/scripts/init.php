@@ -19,7 +19,10 @@ $prefix = Config::get('app.key_prefix');
 ################################################################################
 WpMaster::setPostsAsBlog();
 
+
+################################################################################
 # Disable Gutenberg
+################################################################################
 array_map(function ($postType) {
     get_post_type_object($postType)->show_in_rest = false;
 }, ['page', 'post']);
@@ -29,7 +32,10 @@ array_map(function ($postType) {
 # Register post types and taxonomies
 ################################################################################
 PostType::create(Config::get('wp.post_types'));
+Config::remove('wp.post_types');
+
 Taxonomy::create(Config::get('wp.taxonomies'));
+Config::remove('wp.taxonomies');
 
 
 ################################################################################
@@ -41,6 +47,3 @@ Forms::register('contact', Form::create("{$prefix}-contact-form", ContactForm::c
 ################################################################################
 # load files
 ################################################################################
-
-# company info settings admin page
-require 'admin-pages/options--company-info.php';

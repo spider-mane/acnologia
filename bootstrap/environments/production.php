@@ -9,6 +9,4 @@ use WebTheory\Zeref\Accessors\Config;
 
 use function Sentry\init as sentry_init;
 
-sentry_init([
-    'dsn' => Config::get('services.sentry.dsn')
-]);
+sentry_init(['dsn' => Config::get('services.sentry.dsn')]);

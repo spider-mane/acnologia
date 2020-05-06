@@ -14,3 +14,13 @@ if (defined('WP_ENV') && WP_ENV !== 'production' && !is_admin()) {
 if (!defined('WP_DEFAULT_THEME')) {
     register_theme_directory(ABSPATH . 'wp-content/themes');
 }
+
+
+################################################################################
+# Register admin pages
+################################################################################
+add_action('admin_menu', function () {
+
+    # company info settings admin page
+    require 'admin-pages/options--company-info.php';
+});

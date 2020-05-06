@@ -4,6 +4,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Table Prefix
+    |--------------------------------------------------------------------------
+    |
+    | Prefix for WordPress database tables
+    |
+    */
+    'table_prefix' => env('TABLE_PREFIX', 'wp_'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Wp Config
     |--------------------------------------------------------------------------
     |
@@ -12,12 +22,8 @@ return [
     | corresponding constant!
     |
     */
+    'config' => require dirname(__FILE__) . '/wp/config.php',
 
-    'config' => [
-
-        'default_theme' => null,
-        'textdomain' => 'acnologia',
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -28,20 +34,12 @@ return [
     | many as you'd like.
     |
     */
-
     'admin' => [
 
         'alerts' => [
             'invalid_url' => 'The url you provided is invalid',
             'invalid_phone' => 'The phone number provided was invalid',
             'invalid_email' => 'The email address provided was not recognized as valid',
-        ],
-
-        'social_media' => [
-            'facebook' => 'Facebook',
-            'linkedin' => 'linkedIn',
-            'instagram' => 'Instagram',
-            'twitter' => 'Twitter',
         ],
     ],
 
@@ -54,7 +52,6 @@ return [
     | simple arguments into concrete actions that customize the WordPress cms.
     |
     */
-
     'options' => [
 
         'form_field' => [

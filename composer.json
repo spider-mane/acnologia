@@ -21,6 +21,7 @@
     "php": ">=7.2",
     "commerceguys/addressing": "^1.0",
     "dragonmantank/cron-expression": "^2.2",
+    "enqueue/dsn": "^0.10.1",
     "frontpack/composer-assets-plugin": "^0.9.4",
     "geocoder-php/google-maps-provider": "^4.4",
     "guzzlehttp/guzzle": "^6.3",

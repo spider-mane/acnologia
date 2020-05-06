@@ -6,6 +6,7 @@ use Respect\Validation\Validator as v;
 use Swift_Message;
 use WebTheory\GuctilityBelt\Phone;
 use WebTheory\Saveyour\Contracts\FormDataProcessorInterface;
+use WebTheory\Saveyour\Contracts\FormFieldControllerInterface;
 use WebTheory\Saveyour\Controllers\FormFieldController;
 use WebTheory\Saveyour\Processors\FormDataSwiftMailer;
 use WebTheory\Zeref\Accessors\App;
@@ -65,7 +66,7 @@ class ContactForm extends FormBase implements FormInterface
     }
 
     /**
-     *
+     * @return FormFieldControllerInterface[]
      */
     protected function formFieldControllers(): array
     {
@@ -97,7 +98,7 @@ class ContactForm extends FormBase implements FormInterface
     }
 
     /**
-     *
+     * @return FormDataProcessorInterface[]
      */
     protected function formDataProcessors(): array
     {
@@ -107,7 +108,7 @@ class ContactForm extends FormBase implements FormInterface
     }
 
     /**
-     *
+     * @return FormDataProcessorInterface
      */
     protected function formDataMailer(): FormDataProcessorInterface
     {

@@ -9,11 +9,6 @@
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/bootstrap/app.php';
-require dirname(__DIR__) . '/bootstrap/system.php';
-
-
-if (!defined('ABSPATH')) {
-    define('ABSPATH', WP_CORE_DIR . DIRECTORY_SEPARATOR);
-}
+require dirname(__DIR__) . '/bootstrap/setup.php';
 
 require ABSPATH . 'wp-settings.php';
