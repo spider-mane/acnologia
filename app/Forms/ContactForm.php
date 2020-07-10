@@ -113,7 +113,7 @@ class ContactForm extends FormBase implements FormInterface
     protected function formDataMailer(): FormDataProcessorInterface
     {
         $sender = Config::get("mail.from");
-        $mailConfig = $this->config['mailer'];
+        $mailConfig = $this->config["mailer"];
 
         $message = (new Swift_Message($mailConfig["subject"]))
             ->setFrom($sender["address"], $sender["name"])
@@ -121,7 +121,7 @@ class ContactForm extends FormBase implements FormInterface
 
         $fields = array_map(function ($field) {
             return $field["name"];
-        }, $this->config['fields']);
+        }, $this->config["fields"]);
 
         return (new FormDataSwiftMailer(App::get("mailer"), $message))
             ->setFields($fields);

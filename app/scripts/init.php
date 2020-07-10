@@ -17,12 +17,11 @@ $prefix = Config::get('app.key_prefix');
 ################################################################################
 # Admin modifiers
 ################################################################################
+
+# Redefine "Posts" as Blog
 WpMaster::setPostsAsBlog();
 
-
-################################################################################
 # Disable Gutenberg
-################################################################################
 array_map(function ($postType) {
     get_post_type_object($postType)->show_in_rest = false;
 }, ['page', 'post']);
@@ -32,10 +31,7 @@ array_map(function ($postType) {
 # Register post types and taxonomies
 ################################################################################
 PostType::create(Config::get('wp.post_types'));
-Config::remove('wp.post_types');
-
 Taxonomy::create(Config::get('wp.taxonomies'));
-Config::remove('wp.taxonomies');
 
 
 ################################################################################

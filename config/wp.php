@@ -1,5 +1,7 @@
 <?php
 
+$prefix = env('APP_KEY_PREFIX');
+
 return [
 
     /*
@@ -41,6 +43,12 @@ return [
             'invalid_phone' => 'The phone number provided was invalid',
             'invalid_email' => 'The email address provided was not recognized as valid',
         ],
+
+        'pages' => [
+            'company_info' => $prefix . '-company-info'
+        ],
+
+        'settings' => []
     ],
 
     /*
@@ -63,7 +71,7 @@ return [
 
         'data_manager' => [
             'managers' => [
-                'term_based_post_meta' => WebTheory\Taxtrubute\TermBasedPostMeta::class,
+                'term_based_post_meta' => WebTheory\Taxtribute\TermBasedPostMeta::class,
                 'term_related_posts' => WebTheory\Post2Post\TermRelatedPostsManager::class,
             ],
             'namespaces' => [
@@ -73,7 +81,6 @@ return [
 
         'post_type' => [
             'sort_by_term' => WebTheory\SortOrder\SortByTermPostTypeArg::class,
-            'somewhat_relatable_to' => WebTheory\Post2Post\SomewhatRelatableToPostTypeArg::class,
         ],
 
         'taxonomy' => [

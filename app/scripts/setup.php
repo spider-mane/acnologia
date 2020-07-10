@@ -1,26 +1,11 @@
 <?php
 
-################################################################################
-# Disallow indexing on non production environments
-################################################################################
-if (defined('WP_ENV') && WP_ENV !== 'production' && !is_admin()) {
-    add_action('pre_option_blog_public', '__return_zero');
-}
+declare(strict_types=1);
 
-
-################################################################################
-# Register default wordpress theme directory
-################################################################################
-if (!defined('WP_DEFAULT_THEME')) {
-    register_theme_directory(ABSPATH . 'wp-content/themes');
-}
-
-
-################################################################################
-# Register admin pages
-################################################################################
-add_action('admin_menu', function () {
-
-    # company info settings admin page
-    require 'admin-pages/options--company-info.php';
-});
+/**
+ * Setup
+ *
+ * This file is loaded as soon as the app mu-plugin is loaded by wordpress. Use
+ * this file to establish any actions and filters not present in the app
+ * mu-plugin file.
+ */

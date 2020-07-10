@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use Respect\Validation\Validator as v;
 use WebTheory\GuctilityBelt\Phone;
 use WebTheory\Leonidas\AdminPage\SettingsField;
-use WebTheory\Leonidas\AdminPage\SettingsPage;
 use WebTheory\Leonidas\AdminPage\SettingsSection;
 use WebTheory\Leonidas\SettingManager;
 use WebTheory\Saveyour\Fields\Email;
@@ -23,20 +24,7 @@ $invalidUrl = Config::get("wp.admin.alerts.invalid_email");
 # option groups
 $companyInfoOptionGroup = "{$prefix}-company-info";
 
-
-################################################################################
-# Register Page
-################################################################################
-
-# Create page
-$page = (new SettingsPage("{$prefix}-company-info", "manage_options"))
-    ->addFieldGroups($companyInfoOptionGroup)
-    ->setIcon("dashicons-building")
-    ->setDescription("Information about your company")
-    ->setMenuTitle("Company Info")
-    ->setPageTitle("Company Info")
-    ->setPosition(100)
-    ->register();
+$page = "{$prefix}-company-info";
 
 
 ################################################################################
@@ -44,9 +32,10 @@ $page = (new SettingsPage("{$prefix}-company-info", "manage_options"))
 ################################################################################
 
 ## register section
-$companNameSection = (new SettingsSection("{$prefix}-company-name", "Company Name", $page->getMenuSlug()))
-    ->setDescription("Your company name")
-    ->hook();
+$companNameSection = (new SettingsSection("{$prefix}-company-name", "Company Name", $page))
+    ->setDescription("Your company name");
+
+$companNameSection->register();
 
 $titleVars = [
     "filter" => "sanitize_text_field"
@@ -62,7 +51,7 @@ $titleElement = (new Text)
     ->setId("{$prefix}--company-info--title-full")
     ->addClass("regular-text");
 
-$titleField = (new SettingsField("{$prefix}-company-title", "Full Title", $page->getMenuSlug()))
+$titleField = (new SettingsField("{$prefix}-company-title", "Full Title", $page))
     ->setSection($companNameSection->getId())
     ->setSetting($titleSetting->getOptionName())
     ->setField($titleElement)
@@ -79,7 +68,7 @@ $shortTitleElement = (new Text)
     ->setId("{$prefix}--company-info--title-short")
     ->addClass("regular-text");
 
-$shortTitleField = (new SettingsField("{$prefix}-company-title-short", "Short Name", $page->getMenuSlug()))
+$shortTitleField = (new SettingsField("{$prefix}-company-title-short", "Short Name", $page))
     ->setSection($companNameSection->getId())
     ->setSetting($shortTitleSetting->getOptionName())
     ->setField($shortTitleElement)
@@ -96,7 +85,7 @@ $shortTitleElement = (new Text)
     ->setId("{$prefix}--company-info--title-styled")
     ->addClass("regular-text");
 
-$shortTitleField = (new SettingsField("{$prefix}-company-title-styled", "Stylized Name", $page->getMenuSlug()))
+$shortTitleField = (new SettingsField("{$prefix}-company-title-styled", "Stylized Name", $page))
     ->setSection($companNameSection->getId())
     ->setSetting($shortTitleSetting->getOptionName())
     ->setField($shortTitleElement)
@@ -118,7 +107,7 @@ $emailFilter = 'sanitize_email';
 
 
 ## register section
-$companyContactSection = (new SettingsSection("{$prefix}-company-contact", "Contact Info", $page->getMenuSlug()))
+$companyContactSection = (new SettingsSection("{$prefix}-company-contact", "Contact Info", $page))
     ->setDescription("General contact information for your company")
     ->hook();
 
@@ -133,7 +122,7 @@ $phoneElement = (new Tel)
     ->addClass("regular-text")
     ->setPlaceholder("e.g. 555-555-5555");
 
-$phoneField = (new SettingsField("{$prefix}-company-contact-phone", "Contact Number", $page->getMenuSlug()))
+$phoneField = (new SettingsField("{$prefix}-company-contact-phone", "Contact Number", $page))
     ->setSection($companyContactSection->getId())
     ->setSetting($phoneSetting->getOptionName())
     ->setField($phoneElement)
@@ -151,7 +140,7 @@ $emailElement = (new Email)
     ->addClass("regular-text")
     ->setPlaceholder("e.g. contact@company.com");
 
-$emailField = (new SettingsField("{$prefix}-company-contact-email", "Contact Email", $page->getMenuSlug()))
+$emailField = (new SettingsField("{$prefix}-company-contact-email", "Contact Email", $page))
     ->setSection($companyContactSection->getId())
     ->setSetting($emailSetting->getOptionName())
     ->setField($emailElement)
@@ -167,7 +156,7 @@ $addressVars = [
 ];
 
 ## register section
-$companyContactSection = (new SettingsSection("{$prefix}-company-address", "Address", $page->getMenuSlug()))
+$companyContactSection = (new SettingsSection("{$prefix}-company-address", "Address", $page))
     ->setDescription("Your company\"s primary address")
     ->hook();
 
@@ -177,7 +166,7 @@ $companyContactSection = (new SettingsSection("{$prefix}-company-address", "Addr
 ################################################################################
 
 ## register section
-$socialMediaSection = (new SettingsSection("{$prefix}-social-media", "Social Media Accounts", $page->getMenuSlug()))
+$socialMediaSection = (new SettingsSection("{$prefix}-social-media", "Social Media Accounts", $page))
     ->setDescription("Provide links to your social media accounts")
     ->hook();
 
@@ -207,7 +196,7 @@ foreach ($socialMediaAccounts as $slug => $name) {
         ->setId("{$prefix}--social-media--{$slug}")
         ->setPlaceholder("e.g. {$dummyUrl}");
 
-    $field = (new SettingsField("social-media-{$slug}", $name, $page->getMenuSlug()))
+    $field = (new SettingsField("social-media-{$slug}", $name, $page))
         ->setSection($socialMediaSection->getId())
         ->setSetting($setting->getOptionName())
         ->setField($element)
