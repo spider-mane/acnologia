@@ -4,19 +4,18 @@
   "homepage": "https://github.com/spider-mane/acnologia",
   "license": "MIT",
   "type": "project",
-
   "keywords": [
     "webtheory",
     "acnologia"
   ],
-
-  "authors": [{
-    "name": "Chris Williams",
-    "email": "spider.mane.web@gmail.com",
-    "homepage": "https://github.com/spider-mane",
-    "role": "Developer"
-  }],
-
+  "authors": [
+    {
+      "name": "Chris Williams",
+      "email": "spider.mane.web@gmail.com",
+      "homepage": "https://github.com/spider-mane",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "php": ">=7.2",
     "commerceguys/addressing": "^1.0",
@@ -40,7 +39,6 @@
     "webtheory/wp-library": "^0.7.1",
     "webtheory/zeref": "^0.1.3"
   },
-
   "require-dev": {
     "filp/whoops": "^2.5",
     "friendsofphp/php-cs-fixer": "^2.15",
@@ -52,19 +50,16 @@
     "squizlabs/php_codesniffer": "^3.0",
     "symfony/var-dumper": "^4.3"
   },
-
   "autoload": {
     "psr-4": {
       "App\\": "app/"
     }
   },
-
   "autoload-dev": {
     "psr-4": {
       "App\\Tests\\": "tests/"
     }
   },
-
   "scripts": {
     "test": "vendor/bin/phpunit",
     "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
@@ -75,16 +70,20 @@
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ]
   },
-
   "extra": {
     "installer-paths": {
-      "public/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "public/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "public/app/themes/{$name}/": ["type:wordpress-theme"]
+      "public/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "public/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "public/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "public/wp"
   },
-
   "config": {
     "preferred-install": "dist",
     "sort-packages": true,
